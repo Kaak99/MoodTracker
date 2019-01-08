@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences prefs;
     MediaPlayer media;
 
+    int moodNumber = 3; //start with mood number 3
+    Mood currentMood, lastMood;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,33 @@ public class MainActivity extends AppCompatActivity {
 
 
 // if  swiping
+        mainLayout.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
+
+            public void onSwipeTop() {          // moodNumber increases, but =<4 (5 moods)
+                if (moodNumber < Constants.tabSmiley.length - 1) {
+                    moodNumber++;
+                    swipeDisplay();
+                }
+            }
+
+            public void onSwipeRight() {
+                //Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
+                //Log.v("MoodTracker", "++" + currentMood.getTodaysDate() + "++" + currentMood.getTodaysNote() + "++" + currentMood.getTodaysMood());
+            }
+
+            public void onSwipeLeft() {
+                //Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+            }
+
+            public void onSwipeBottom() {  // moodNumber decreases, but => 0
+
+                if (moodNumber > 0) {
+                    moodNumber--;
+                    swipeDisplay();
+                }
+            }
+        });
+
 
 // if clicking button noteAdd
 
@@ -50,4 +80,16 @@ public class MainActivity extends AppCompatActivity {
 
 
     } //end onCreate
+
+    private void swipeDisplay() {  //actualize display and sound when swipping
+        ivSmiley.setImageResource(Constants.tabSmiley[moodNumber]);
+        mainLayout.setBackgroundResource(Constants.tabColorBackground[moodNumber]);
+        currentMood.setTodaysMood(moodNumber);
+        if (media != null && media.isPlaying()) {
+            media.stop();
+        }
+        media = MediaPlayer.create(getApplicationContext(), Constants.tabSound[moodNumber]);
+        media.start();
+    }
+
 } //end MainActivity
