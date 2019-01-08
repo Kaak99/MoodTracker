@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">MoodTracker</string>
     <string name="smiley">a smiley with different moods</string>
+    <string name="noteadd_title">Comment</string>
+    <string name="noteadd_neg_button">Cancel</string>
+    <string name="noteadd_pos_button">OK</string>
 </resources>

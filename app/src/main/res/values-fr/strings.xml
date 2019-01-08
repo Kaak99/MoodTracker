@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MoodTracker</string>
+    <string name="smiley">un smiley qui change d\'humeur</string>
+    <string name="noteadd_title">Commentaire</string>
+    <string name="noteadd_neg_button">Annuler</string>
+    <string name="noteadd_pos_button">Valider</string>
+</resources>
