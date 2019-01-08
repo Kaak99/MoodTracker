@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-
 import com.google.gson.Gson;
 
 
@@ -27,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer media;
 
     int moodNumber = 3; //start with mood number 3
-    Mood currentMood, lastMood;
-
+    String moodComment = ""; //start with no mood coment
+    long moodDate = System.currentTimeMillis(); //start with today's'date
+    Mood currentMood, lastMood;     //each mood contains a moodDate, a moodNumber, a moodComment
+    int index; //we will memorize 8 json, index point the key to the last one
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
             public void onSwipeRight() {
                 //Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
-                //Log.v("MoodTracker", "++" + currentMood.getTodaysDate() + "++" + currentMood.getTodaysNote() + "++" + currentMood.getTodaysMood());
             }
 
             public void onSwipeLeft() {
@@ -72,11 +72,41 @@ public class MainActivity extends AppCompatActivity {
 
 
 // if clicking button noteAdd
+        btnNoteAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LayoutInflater li = LayoutInflater.from(MainActivity.this);
+                View promptsView = li.inflate(R.layout.alertdiag_noteadd, null);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        MainActivity.this);
+                alertDialogBuilder.setView(promptsView);
+                final EditText userInput = (EditText) promptsView
+                        .findViewById(R.id.etAlertdiagNoteadd); //to our alertdiagNoteadd.xml
+
+                // set dialog message
+                alertDialogBuilder
+                        .setCancelable(false)
+                        .setPositiveButton(R.string.noteadd_pos_button,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        moodComment = userInput.getText().toString();
+                                        currentMood.setTodaysNote(moodComment);
+                                    }
+                                })
+                        .setNegativeButton(R.string.noteadd_neg_button,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+                // create alert dialog & show
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+            }
+        });
+
 
 // if clicking button History
-
-
-
 
 
     } //end onCreate
