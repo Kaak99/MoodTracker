@@ -2,6 +2,7 @@ package com.example.souhi.moodtracker;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.preference.PreferenceManager;
@@ -110,7 +111,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 // if clicking button History
-
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
+                //Intent intent = new Intent(getApplicationContext(), HistoryActivityV2.class);
+                startActivity(intent);
+            }
+        });
 
     } //end onCreate
 
@@ -176,9 +184,6 @@ public class MainActivity extends AppCompatActivity {
             mainLayout.setBackgroundResource(Constants.tabColorBackground[moodNumber]);
         }
     } //end onCreate
-
-
-
 
     private void swipeDisplay() {  //actualize display and sound when swipping
         ivSmiley.setImageResource(Constants.tabSmiley[moodNumber]);
