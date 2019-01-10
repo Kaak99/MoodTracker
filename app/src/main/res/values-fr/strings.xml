@@ -5,14 +5,11 @@
     <string name="noteadd_neg_button">Annuler</string>
     <string name="noteadd_pos_button">Valider</string>
     <string name="imageButton">commentaire</string>
+    <string name="comment">écrivez votre commentaire ici</string>
     <string name="itwas">Il y a %1$d jours</string>
 
     <string name="yesterday">Hier</string>
     <string name="daybefore">Avant-hier</string>
-    <string name="three_days_ago">Il y a trois jours</string>
-    <string name="four_days_ago">Il y a quatre jours</string>
-    <string name="five_days_ago">Il y a cinq jours</string>
-    <string name="six_days_ago">Il y a six jours</string>
     <string name="oneweek">Il y a une semaine</string>
 
     <string-array name="numbers">
