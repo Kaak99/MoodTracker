@@ -14,9 +14,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import com.google.gson.Gson;
 
 import java.util.Calendar;
+
+import com.example.souhi.moodtracker.R;
+import com.example.souhi.moodtracker.Constants;
+import com.example.souhi.moodtracker.Mood;
+import com.google.gson.Gson;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -115,14 +119,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
-                //Intent intent = new Intent(getApplicationContext(), HistoryActivityV2.class);
                 startActivity(intent);
             }
         });
 
     } //end onCreate
 
-//onPause : save actual mood object (via json/gson) in SharedPref key ["memory"+index] (index 0-8)
+    //onPause : save actual mood object (via json/gson) in SharedPref key ["memory"+index] (index 0-8)
 // first need to know if same day than last key shared. if different : index+1
     @Override
     protected void onPause() {
@@ -152,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }  // end on pause
 
-//onResume : restore lastmode registered if date = todays date (else, reinit smiley/background)
+    //onResume : restore lastmode registered if date = todays date (else, reinit smiley/background)
     @Override
     protected void onResume() {
         super.onResume();
