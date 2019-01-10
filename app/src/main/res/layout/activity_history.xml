@@ -19,19 +19,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:text=" " />
+            android:text="" />
 
         <ImageButton
             android:id="@+id/imgButton6"
-            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="7dp"
             android:layout_marginRight="7dp"
-            android:onClick="comDisplay"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_comment_black_48px" />
+            android:contentDescription="@string/imageButton"
+            android:onClick="comDisplay"
+            android:src="@drawable/ic_comment_black_48px"
+            android:visibility="invisible" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -46,21 +49,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:text=" " />
-
+            android:text="" />
 
 
         <ImageButton
             android:id="@+id/imgButton5"
-            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="7dp"
             android:layout_marginRight="7dp"
-            android:onClick="comDisplay"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_comment_black_48px" />
+            android:contentDescription="@string/imageButton"
+            android:onClick="comDisplay"
+            android:src="@drawable/ic_comment_black_48px"
+            android:visibility="invisible" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -75,19 +80,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:text=" " />
+            android:text="" />
 
         <ImageButton
             android:id="@+id/imgButton4"
-            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="7dp"
             android:layout_marginRight="7dp"
-            android:onClick="comDisplay"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_comment_black_48px" />
+            android:contentDescription="@string/imageButton"
+            android:onClick="comDisplay"
+            android:src="@drawable/ic_comment_black_48px"
+            android:visibility="invisible" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -102,19 +110,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:text=" " />
+            android:text="" />
 
         <ImageButton
             android:id="@+id/imgButton3"
-            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="7dp"
             android:layout_marginRight="7dp"
-            android:onClick="comDisplay"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_comment_black_48px" />
+            android:contentDescription="@string/imageButton"
+            android:onClick="comDisplay"
+            android:src="@drawable/ic_comment_black_48px"
+            android:visibility="invisible" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -129,19 +140,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:text=" " />
+            android:text="" />
 
         <ImageButton
             android:id="@+id/imgButton2"
-            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="7dp"
             android:layout_marginRight="7dp"
-            android:onClick="comDisplay"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_comment_black_48px" />
+            android:contentDescription="@string/imageButton"
+            android:onClick="comDisplay"
+            android:src="@drawable/ic_comment_black_48px"
+            android:visibility="invisible" />
     </RelativeLayout>
 
 
@@ -157,22 +171,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:text=" "/>
-
-
+            android:text="" />
 
 
         <ImageButton
             android:id="@+id/imgButton1"
-            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="7dp"
             android:layout_marginRight="7dp"
-            android:onClick="comDisplay"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_comment_black_48px" />
+            android:contentDescription="@string/imageButton"
+            android:onClick="comDisplay"
+            android:src="@drawable/ic_comment_black_48px"
+            android:visibility="invisible" />
     </RelativeLayout>
 
 
@@ -188,23 +203,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:text=" "/>
-
-
+            android:text="" />
 
 
         <ImageButton
             android:id="@+id/imgButton0"
-            android:visibility="invisible"
-            android:enabled="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="7dp"
             android:layout_marginRight="7dp"
-            android:onClick="comDisplay"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_comment_black_48px" />
+
+            android:contentDescription="@string/imageButton"
+            android:enabled="false"
+            android:onClick="comDisplay"
+            android:src="@drawable/ic_comment_black_48px"
+            android:visibility="invisible" />
     </RelativeLayout>
 
 </LinearLayout>

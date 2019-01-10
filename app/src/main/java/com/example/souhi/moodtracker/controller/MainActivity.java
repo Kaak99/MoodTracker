@@ -23,7 +23,6 @@ import com.example.souhi.moodtracker.model.Constants;
 import com.example.souhi.moodtracker.model.Mood;
 import com.google.gson.Gson;
 
-
 public class MainActivity extends AppCompatActivity {
 
     //initialization////////
@@ -73,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
             public void onSwipeBottom() {  // moodNumber decreases, but => 0
-
                 if (moodNumber > 0) {
                     moodNumber--;
                     swipeDisplay();
@@ -91,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                         MainActivity.this);
                 alertDialogBuilder.setView(promptsView);
-                final EditText userInput = (EditText) promptsView
-                        .findViewById(R.id.etAlertdiagNoteadd); //to our alertdiagNoteadd.xml
+                final EditText userInput = promptsView
+                        .findViewById(R.id.etAlertdiagNoteadd);
 
                 // set dialog message
                 alertDialogBuilder
@@ -135,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         index = prefs.getInt("memoryIndex", 1);
         String json0 = prefs.getString("memory" + index, "");
-
         if (json0 != null && !json0.equals("")) {
             lastMood = gson.fromJson(json0, Mood.class);
             Calendar calendar1 = Calendar.getInstance();
@@ -189,9 +186,9 @@ public class MainActivity extends AppCompatActivity {
             ivSmiley.setImageResource(Constants.tabSmiley[moodNumber]);
             mainLayout.setBackgroundResource(Constants.tabColorBackground[moodNumber]);
         }
-    } //end onCreate
+    } //end onResume
 
-    private void swipeDisplay() {  //actualize display and sound when swipping
+    private void swipeDisplay() {  //actualize display and sound when swiping
         ivSmiley.setImageResource(Constants.tabSmiley[moodNumber]);
         mainLayout.setBackgroundResource(Constants.tabColorBackground[moodNumber]);
         currentMood.setTodaysMood(moodNumber);
@@ -201,5 +198,4 @@ public class MainActivity extends AppCompatActivity {
         media = MediaPlayer.create(getApplicationContext(), Constants.tabSound[moodNumber]);
         media.start();
     }
-
 } //end MainActivity

@@ -4,6 +4,7 @@
     <string name="noteadd_title">Comment</string>
     <string name="noteadd_neg_button">Cancel</string>
     <string name="noteadd_pos_button">OK</string>
+    <string name="imageButton">quote</string>
     <string name="itwas">%1$d days ago</string> <!-- %1$d => décimal %1$s = > string-->
 
     <string name="yesterday">Yesterday</string>

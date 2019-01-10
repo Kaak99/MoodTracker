@@ -8,11 +8,12 @@ public class Mood {
     private String todaysNote;
 
     //constructor
-    public Mood (long todaysDate , int todaysMood , String todaysNote ) {
+    public Mood(long todaysDate, int todaysMood, String todaysNote) {
         this.todaysDate = todaysDate;
         this.todaysMood = todaysMood;
         this.todaysNote = todaysNote;
     }
+
     //getter/setters
     public long getTodaysDate() {
         return todaysDate;

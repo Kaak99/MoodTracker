@@ -1,4 +1,5 @@
 package com.example.souhi.moodtracker.model;
+
 import com.example.souhi.moodtracker.R;
 
 public class Constants {
