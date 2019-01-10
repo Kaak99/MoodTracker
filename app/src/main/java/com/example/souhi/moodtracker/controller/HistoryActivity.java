@@ -1,4 +1,4 @@
-package com.example.souhi.moodtracker;
+package com.example.souhi.moodtracker.controller;
 
 import android.content.SharedPreferences;
 import android.graphics.Point;
@@ -14,15 +14,18 @@ import android.widget.Toast;
 
 
 //import com.example.souhi.moodtracker.R;
-//import com.example.souhi.moodtracker.Constants;
-//import com.example.souhi.moodtracker.Mood;
+//import com.example.souhi.moodtracker.model.Constants;
+//import com.example.souhi.moodtracker.model.Mood;
+import com.example.souhi.moodtracker.model.Constants;
+import com.example.souhi.moodtracker.model.Mood;
+import com.example.souhi.moodtracker.R;
 import com.google.gson.Gson;
 
 import java.util.Calendar;
 
-import static com.example.souhi.moodtracker.Constants.HISTORY_NUMBER;
-import static com.example.souhi.moodtracker.Constants.MOOD_NUMBER;
-import static com.example.souhi.moodtracker.Constants.SAVEDPREFKEY_NUMBER;
+import static com.example.souhi.moodtracker.model.Constants.HISTORY_NUMBER;
+import static com.example.souhi.moodtracker.model.Constants.MOOD_NUMBER;
+import static com.example.souhi.moodtracker.model.Constants.SAVEDPREFKEY_NUMBER;
 
 public class HistoryActivity extends AppCompatActivity {
 

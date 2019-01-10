@@ -1,4 +1,4 @@
-package com.example.souhi.moodtracker;
+package com.example.souhi.moodtracker.model;
 
 public class Mood {
 

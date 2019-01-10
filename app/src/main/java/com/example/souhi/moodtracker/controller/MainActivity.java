@@ -1,5 +1,6 @@
-package com.example.souhi.moodtracker;
+package com.example.souhi.moodtracker.controller;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,8 +19,8 @@ import android.widget.RelativeLayout;
 import java.util.Calendar;
 
 import com.example.souhi.moodtracker.R;
-import com.example.souhi.moodtracker.Constants;
-import com.example.souhi.moodtracker.Mood;
+import com.example.souhi.moodtracker.model.Constants;
+import com.example.souhi.moodtracker.model.Mood;
 import com.google.gson.Gson;
 
 
@@ -34,22 +35,24 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer media;
 
     int moodNumber = 3; //start with mood number 3
-    String moodComment = ""; //start with no mood coment
+    String moodComment = ""; //start with no mood comment
     long moodDate = System.currentTimeMillis(); //start with today's'date
     Mood currentMood, lastMood;     //each mood contains a moodDate, a moodNumber, a moodComment
     int index; //we will memorize 8 json, index point the key to the last one
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        currentMood = new Mood(moodDate, moodNumber, moodComment); //new mood=currentMood
 
         // findViewById
         ivSmiley = findViewById(R.id.ivSmiley);
         btnNoteAdd = findViewById(R.id.btnNoteAdd);
         btnHistory = findViewById(R.id.btnHistory);
         mainLayout = findViewById(R.id.mainLayout);
-
 
 // if  swiping
         mainLayout.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
