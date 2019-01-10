@@ -4,4 +4,22 @@
     <string name="noteadd_title">Comment</string>
     <string name="noteadd_neg_button">Cancel</string>
     <string name="noteadd_pos_button">OK</string>
+    <string name="itwas">%1$d days ago</string> <!-- %1$d => décimal %1$s = > string-->
+
+    <string name="yesterday">Yesterday</string>
+    <string name="daybefore">Before yesterday</string>
+    <string name="three_days_ago">Three days ago</string>
+    <string name="four_days_ago">Four days ago</string>
+    <string name="five_days_ago">Five days ago</string>
+    <string name="six_days_ago">Six days ago.</string>
+    <string name="oneweek">One week ago</string>
+
+    <string-array name="numbers">
+        <item>three</item>
+        <item>four</item>
+        <item>five</item>
+        <item>six</item>
+    </string-array>
+    <string name="itwasletter">%1$s days ago</string>
+
 </resources>

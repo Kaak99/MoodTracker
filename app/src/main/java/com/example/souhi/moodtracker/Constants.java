@@ -1,6 +1,4 @@
 package com.example.souhi.moodtracker;
-
-
 import com.example.souhi.moodtracker.R;
 
 public class Constants {
@@ -11,8 +9,8 @@ public class Constants {
 
 
     final public static int MOOD_NUMBER = 5;  //you can choose 5 different moods
-    final public static int HISTORY_NUMBER = 7;  //you can display 7 differnt moods in historyView
-    final public static int SAVEDPREFKEY_NUMBER = 8;//you save 8 different mood in sharedpref'keys +today's one
+    final public static int HISTORY_NUMBER = 7;  //you can display 7 different moods in historyView
+    final public static int SAVEDPREFKEY_NUMBER = 8;//you save 8 different mood in SharedPref's keys +today's one
 
 
 }
