@@ -23,23 +23,26 @@ import com.example.souhi.moodtracker.model.Constants;
 import com.example.souhi.moodtracker.model.Mood;
 import com.google.gson.Gson;
 
+import static com.example.souhi.moodtracker.model.Constants.DEFAULT_MOOD_INDEX;
+
 public class MainActivity extends AppCompatActivity {
 
+
     //initialization////////
-    RelativeLayout mainLayout;
-    ImageView ivSmiley;
-    Button btnNoteAdd, btnHistory;
-    Gson gson = new Gson();
-    SharedPreferences prefs;
-    MediaPlayer media;
+    private RelativeLayout mainLayout;
+    private ImageView ivSmiley;
+    private Button btnNoteAdd, btnHistory;
+    private Gson gson = new Gson();
+    private SharedPreferences prefs;
+    private MediaPlayer media;
 
-    int moodNumber = 3; //start with mood number 3
-    String moodComment = ""; //start with no mood comment
-    long moodDate = System.currentTimeMillis(); //start with today's'date
-    Mood currentMood, lastMood;     //each mood contains a moodDate, a moodNumber, a moodComment
-    int index; //we will memorize 8 json, index point the key to the last one
+    private int moodNumber = DEFAULT_MOOD_INDEX; //start with mood number 3
+    private String moodComment = ""; //start with no mood comment
+    private long moodDate = System.currentTimeMillis(); //start with today's'date
+    private Mood currentMood, lastMood;     //each mood contains a moodDate, a moodNumber, a moodComment
+    private int moodIndex; //we will memorize 8 json, moodIndex point the key to the last one
 
-    @SuppressLint("ClickableViewAccessibility")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,28 +50,28 @@ public class MainActivity extends AppCompatActivity {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         currentMood = new Mood(moodDate, moodNumber, moodComment); //new mood=currentMood
 
+        initViews();
+        initGestureListener();
+        initButtons();
+    } //end onCreate
+
+    private void initViews() {
         // findViewById
         ivSmiley = findViewById(R.id.ivSmiley);
         btnNoteAdd = findViewById(R.id.btnNoteAdd);
         btnHistory = findViewById(R.id.btnHistory);
         mainLayout = findViewById(R.id.mainLayout);
+    }
 
-// if  swiping
+    @SuppressLint("ClickableViewAccessibility")
+    private void initGestureListener() {
+        // if  swiping
         mainLayout.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
-
             public void onSwipeTop() {          // moodNumber increases, but =<4 (5 moods)
                 if (moodNumber < Constants.tabSmiley.length - 1) {
                     moodNumber++;
                     swipeDisplay();
                 }
-            }
-
-            public void onSwipeRight() {
-                //Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
-            }
-
-            public void onSwipeLeft() {
-                //Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
             }
 
             public void onSwipeBottom() {  // moodNumber decreases, but => 0
@@ -78,9 +81,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
-
-// if clicking button noteAdd
+    private void initButtons() {
+        // if clicking button noteAdd
         btnNoteAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,9 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 alertDialog.show();
             }
         });
-
-
-// if clicking button History
+        // if clicking button History
         btnHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,35 +125,34 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
-    } //end onCreate
-
-    //onPause : save actual mood object (via json/gson) in SharedPref key ["memory"+index] (index 0-8)
-// first need to know if same day than last key shared. if different : index+1
+    //onPause : save actual mood object (via json/gson) in SharedPref key ["memory"+moodIndex] (moodIndex 0-8)
+// first need to know if same day than last key shared. if different : moodIndex+1
     @Override
     protected void onPause() {
         super.onPause();
-        index = prefs.getInt("memoryIndex", 1);
-        String json0 = prefs.getString("memory" + index, "");
-        if (json0 != null && !json0.equals("")) {
-            lastMood = gson.fromJson(json0, Mood.class);
+        moodIndex = prefs.getInt("memoryIndex", 1);
+        String lastJson = prefs.getString("memory" + moodIndex, "");
+        if (lastJson != null && !lastJson.equals("")) {
+            lastMood = gson.fromJson(lastJson, Mood.class);
             Calendar calendar1 = Calendar.getInstance();
             Calendar calendar2 = Calendar.getInstance();
             calendar1.setTimeInMillis(System.currentTimeMillis());//today's date
             calendar2.setTimeInMillis(lastMood.getTodaysDate());//date from lastMood
 
             if (calendar1.get(Calendar.DAY_OF_YEAR) != calendar2.get(Calendar.DAY_OF_YEAR) || calendar1.get(Calendar.YEAR) != calendar2.get(Calendar.YEAR)) {
-                index++;// different date-> index+1
-                if (index == 9)
-                    index = 1; // index= 1 to 8
+                moodIndex++;// different date-> moodIndex+1
+                if (moodIndex == 9)
+                    moodIndex = 1; // moodIndex= 1 to 8
             }
         }
-//now we save the mood at SharedPref key ["memory" +index]
+//now we save the mood at SharedPref key ["memory" +moodIndex]
         currentMood.setTodaysDate(System.currentTimeMillis()); //actualize date before saving
         String json = gson.toJson(currentMood); // currentMood -> json format
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("memory" + index, json);// writing json in key ["memory" + index]
-        editor.putInt("memoryIndex", index);//writing last index in key memoryIndex
+        editor.putString("memory" + moodIndex, json);// writing json in key ["memory" + moodIndex]
+        editor.putInt("memoryIndex", moodIndex);//writing last moodIndex in key memoryIndex
         editor.apply();
     }  // end on pause
 
@@ -161,8 +162,8 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         SharedPreferences prefs;
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        index = prefs.getInt("memoryIndex", 1);
-        String json = prefs.getString("memory" + index, "");//json contains lastmood registered
+        moodIndex = prefs.getInt("memoryIndex", 1);
+        String json = prefs.getString("memory" + moodIndex, "");//json contains lastmood registered
         if (json != null && !json.equals("")) {
             currentMood = gson.fromJson(json, Mood.class);//currentMood contains lastmood registered
             Calendar calendar1 = Calendar.getInstance();
@@ -171,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
             calendar2.setTimeInMillis(currentMood.getTodaysDate());//date de currentMood
             if (calendar1.get(Calendar.DAY_OF_YEAR) != calendar2.get(Calendar.DAY_OF_YEAR) || calendar1.get(Calendar.YEAR) != calendar2.get(Calendar.YEAR)) {
 // if currentMood(=last moood registerde) is not from today, then reinit the mood (smiley3, green background, no comment, date=now)
-                moodNumber = 3;
+                moodNumber = DEFAULT_MOOD_INDEX;
                 moodComment = "";
                 long moodDate = System.currentTimeMillis();
                 currentMood.setTodaysMood(moodNumber);//
